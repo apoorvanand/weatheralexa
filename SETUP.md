@@ -15,28 +15,29 @@ Every action a skill can perform is called an [Intent](https://developer.amazon.
 
 Utterances are flexible too - they have Slots, which are like variables, and you can use multiple slots in each utterance. There are a number of different slot types that are supported by Alexa by default, like dates, times and city names. But you can also [create your own](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interaction-model-reference#slot-types). So you might say 'what will the horoscope for {Sign} be on {Date}', where Sign is a custom slot, and Date is a default slot.
 
-### How the Code Works
+### How The Code Works
 
-This project uses [alexa-app](https://github.com/matt-kruse/alexa-app), which does the dirty work of interpreting JSON requests from Amazon and building the JSON response. So all the code in this project does is tell Alexa what to say in different scenarios - for example if someone requests weather but doesn't specify a day, we need a different reponse to if they did.
+This project uses [alexa-app](https://github.com/alexa-js/alexa-app), which does the dirty work of interpreting JSON requests from Amazon and building the JSON response. So all the code in this project does is tell Alexa what to say in different scenarios.
 
-## Set Up Your Alexa App
+If a user requests the forecast and provides a day, then we get the weather from forecast.io, turn it into a friendly sounding comment, and then request Alexa say it. Otherwise, if they don't specify a day, then we let the user know one is needed.
 
-So what we need to do here is make Alexa aware of your app, and make it accessible to it. So go to [Amazon's developer site](https://developer.amazon.com/edw/home.html#/skills/list) (and create an account if you don't have one). Then under the 'Alexa' section, select 'Alexa Skills Kit' and from there click on 'Add a new Skill'.
+## How To Set Up Your Alexa App
+
+First you need to [register for an account](https://darksky.net/dev/register), and [get an API key from forecast.io](https://darksky.net/dev/account). Then copy and paste your API key into the `.env` file in your Glitch project.
+
+We now need to make Alexa aware of your app, and make it accessible to it. So go to [Amazon's developer site](https://developer.amazon.com/edw/home.html#/skills/list) (and create an account if you don't have one). Then under the 'Alexa' section, select 'Alexa Skills Kit' and from there click on 'Add a new Skill'.
 
 *   #### 1\. Skill Information
 
-    Select the 'Custom Interaction Model' option for 'Skill Type'. Give your app a name, say 'Airport Info' and choose an invocation name - this is the name you say to Alexa to activate your skill, so 'Alexa ask InvocationName…'.
+    Select the 'Custom Interaction Model' option for 'Skill Type'. Give your app a name, say 'Weather bot' and choose an invocation name - this is the name you say to Alexa to activate your skill, so 'Alexa ask InvocationName…'.
     
 *   #### 2\. Interaction Model
 
-    You want to specify your Intent Schema and Sample Utterances. Thankfully, this is made easy by alexa-app - there are end-points for the detail already. For Intent Schema copy and paste the output given at '[/airportinfo?schema](https://alexa-skill.glitch.me/airportinfo?schema)'. Do the same for '[/airportinfo?utterances](https://alexa-skill.glitch.me/airportinfo?utterances)', pasting that output into 'Sample Utterances.' Lastly, select 'Add Slot Type' and enter 'FAACODES' under 'Enter Type'. Under 'Enter Values', copy and paste all of the values from the `FAACODES.txt` file in your project.
-    
-    ![Screen Shot 2016-08-23 at 21.31.07](https://hyperdev.wpengine.com/wp-content/uploads/2016/08/Screen-Shot-2016-08-23-at-21.31.07-1024x339.png)
-
+    You want to specify your Intent Schema and Sample Utterances. Thankfully, this is made easy by alexa-app - if you click 'Show', you can copy and paste the text in the 'Utterances' and 'Schema' sections.
 
 *   #### 3\. Configuration
 
-    Under Endpoint, select 'HTTPS' and add your project's publish URL with '/airportinfo' appended to it. This is the URL you get when clicking 'Show', and it'll have the format 'https://project-name.glitch.me'. So for our example app, it's 'https://alexa-skill.glitch.me/airportinfo'. Select 'no' for account linking.
+    Under Endpoint, select 'HTTPS' and add your project's publish URL. This is the URL you get when clicking 'Show', and it'll have the format 'https://project-name.glitch.me'. So for our example app, it's 'https://alexa-skill.glitch.me/'. Select 'no' for account linking.
     
 *   #### 4\. SSL Certificate
 
@@ -48,8 +49,4 @@ So what we need to do here is make Alexa aware of your app, and make it accessib
 
 ### Testing Your Alexa App
 
-To get the real impression of using an Amazon Echo, you can use [Echosim](https://echosim.io/). If you log in with your Amazon developer account, it'll automatically know about your app. So you can go ahead and click and hold the mic button and give Alexa a test command. Say 'Ask InvocationName airport status JFK'. Alexa should respond with the airport info. In your project, with the logs open, you can see the request coming in, the response being generated and sent back.
-
-## Getting Help
-
-You can see other example projects on our [Community Projects](https://glitch.com) page. And if you get stuck, let us know on the [forum](http://support.glitch.com/) and we can help you out.
+To get the real impression of using an Amazon Echo, you can use [Echosim](https://echosim.io/). If you log in with your Amazon developer account, it'll automatically know about your app. So you can go ahead and click and hold the mic button and give Alexa a test command. Say "Ask InvocationName what's the weather for today". In your project, with the logs open, you can see the request coming in, the response being generated and sent back.
