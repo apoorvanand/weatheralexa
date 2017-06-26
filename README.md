@@ -20,5 +20,6 @@ Not in the US? There are free t-shirt promotions in the [UK](https://developer.a
 ## Getting Started
 To get started you need to:
 - Set up your Alexa skill in your Amazon developer account.
+- Register for a free [API key for Forecast.io](https://darksky.net/dev/account)
 
 For more detailed setup instructions, see `setup.md`.

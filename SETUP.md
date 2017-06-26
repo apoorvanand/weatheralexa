@@ -11,7 +11,7 @@
 
 To get started, it's useful to know how Alexa apps work as there's some custom terminology that you need to know about. So Alexa is the name of the voice service that powers Amazon's Echo. Alexa provides capabilities, that Amazon terms Skills, which enable people to interact with devices using their voice. A skill could be the ability to play music, set an alarm or something else. Within each skill might be multiple actions - so the ability to play music might involve the actions of play, pause, skip etc.
 
-Every action a skill can perform is called an [Intent](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interaction-model-reference#intent-schema-syntax-json). It's a fitting name, because whilst there might be many ways a person could trigger that action - they might say “play X” or “I want to listen to X”, all of those requests have the same intent. So for all of the ways you can think of that someone might try to trigger the intent, you create what's known as an Utterance. The more utterances you define the better - it makes the interaction with Alexa seem more human. 
+Every action a skill can perform is called an [Intent](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interaction-model-reference#intent-schema-syntax-json). It's a fitting name, because while there might be many ways a person could trigger that action - they might say “play X” or “I want to listen to X”, all of those requests have the same intent. So for all of the ways you can think of that someone might try to trigger the intent, you create what's known as an Utterance. The more utterances you define the better - it makes the interaction with Alexa seem more human. 
 
 Utterances are flexible too - they have Slots, which are like variables, and you can use multiple slots in each utterance. There are a number of different slot types that are supported by Alexa by default, like dates, times and city names. But you can also [create your own](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interaction-model-reference#slot-types). So you might say 'what will the horoscope for {Sign} be on {Date}', where Sign is a custom slot, and Date is a default slot.
 
@@ -23,7 +23,9 @@ If a user requests the forecast and provides a day, then we get the weather from
 
 ## How To Set Up Your Alexa App
 
-First you need to [register for an account](https://darksky.net/dev/register), and [get an API key from forecast.io](https://darksky.net/dev/account). Then copy and paste your API key into the `.env` file in your Glitch project.
+First, [remix this app](https://glitch.com/edit/#!/remix/alexa-skill) so you have your own copy of the code.
+
+Then [register for an account](https://darksky.net/dev/register), and [get an API key from forecast.io](https://darksky.net/dev/account). Then copy and paste your API key into the `.env` file in your Glitch project.
 
 We now need to make Alexa aware of your app, and make it accessible to it. So go to [Amazon's developer site](https://developer.amazon.com/edw/home.html#/skills/list) (and create an account if you don't have one). Then under the 'Alexa' section, select 'Alexa Skills Kit' and from there click on 'Add a new Skill'.
 
