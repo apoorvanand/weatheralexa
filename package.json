@@ -1,20 +1,22 @@
 {
-  "name": "alexa-app-server",
-  "version": "2.2.4",
-  "description": "A web server module for Alexa (Amazon Echo) apps (skills) using Node.js, Express, and alexa-app",
+  "name": "alexa-skill",
+  "version": "0.0.1",
+  "description": "An example Alexa Skill project that gets weather from forecast.io",
   "main": "index.js",
   "scripts": {
-    "start": "node examples/server"
+    "start": "node index.js"
   },
-  "author": "Matt Kruse",
+  "keywords": [
+    "alexa",
+    "amazon",
+    "echo",
+    "skills"
+  ],
+  "author": "Jordan Kasper",
+  "license": "MIT",
   "dependencies": {
-    "alexa-app": "^2.1.0",
-    "bluebird": "^2.9.34",
-    "body-parser": "~1.0.1",
-    "ejs": "~0.7.1",
-    "express": "~4.0.0",
-    "hotswap": "^1.1.0",
-    "lodash": "^4.3.0",
-    "request-promise": "^2.0.0"
+    "alexa-app": "^4.0.0",
+    "ejs": "^2.5.6",
+    "express": "^4.15.2"
   }
 }

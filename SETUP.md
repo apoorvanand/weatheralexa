@@ -1,6 +1,7 @@
 ## What You'll Need
 
 *   An [Amazon Developer Account](https://developer.amazon.com)
+*   A free [API key for Forecast.io](https://darksky.net/dev/account)
 
 ![](https://cdn.glitch.com/681cc882-059d-4b05-a1f6-6cbc099cc79c%2FalexaBriefingSkill.png)
 
@@ -12,19 +13,11 @@ To get started, it's useful to know how Alexa apps work as there's some custom t
 
 Every action a skill can perform is called an [Intent](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interaction-model-reference#intent-schema-syntax-json). It's a fitting name, because whilst there might be many ways a person could trigger that action - they might say “play X” or “I want to listen to X”, all of those requests have the same intent. So for all of the ways you can think of that someone might try to trigger the intent, you create what's known as an Utterance. The more utterances you define the better - it makes the interaction with Alexa seem more human. 
 
-Utterances are flexible too - they have Slots, which are like variables, and you can use multiple slots in each utterance. There are a number of different slot types that are supported by Alexa by default, like dates, times and city names. But you can also [create your own](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interaction-model-reference#slot-types). So you might say 'what will the horoscope for {Sign} be on {Date}', where Sign is a custom slot, and Date is a default slot. Putting all of that together for our Airport info app: The Skill is the ability to get airport information, which has one intent, asking for airport info. That intent has multiple [utterances](https://alexa-skill.glitch.me/airportinfo?utterances), like 'airport status info for `{AIRPORTCODE}`' or 'airport info `{AIRPORTCODE}`'. Where `AIRPORTCODE` is a custom slot that we create, called `FAACODE`.
+Utterances are flexible too - they have Slots, which are like variables, and you can use multiple slots in each utterance. There are a number of different slot types that are supported by Alexa by default, like dates, times and city names. But you can also [create your own](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interaction-model-reference#slot-types). So you might say 'what will the horoscope for {Sign} be on {Date}', where Sign is a custom slot, and Date is a default slot.
 
 ### How the Code Works
 
-Start by [remixing this example project](https://glitch.com/edit/#!/remix/Alexa/681cc882-059d-4b05-a1f6-6cbc099cc79c). The project leverages a couple of open source Node.js modules that make creating Alexa apps much easier. There's [alexa-app-server](https://github.com/matt-kruse/alexa-app-server/), implemented in `index.js`, that provides a stand-alone web server to host Alexa apps (Skills). It also provides a built-in Alexa App simulator that helps you to test your Skill in a web browser and view the responses before we hook it up to a test Echo service. It's instantiated in `examples/server.js`.
-
-We also use [alexa-app](https://github.com/matt-kruse/alexa-app), which does the dirty work of interpreting JSON requests from Amazon and building the JSON response. This is done in `examples/apps/faa-info/index.js`, by creating an instance of alexa-app, known as `airportinfo`. The intent is defined, along with the slots and utterances in that file too. Then how the app will respond to requests is setup, which leverages `FAADataHelper` in `examples/apps/faa-info/faa_data_helper.js`, which is what actually gets the information from the FAA's API and we define what Alexa will say in there too.
-
-You can get the specifics of how the code for [getting info from the FAA works](https://www.bignerdranch.com/blog/developing-alexa-skills-locally-with-nodejs-setting-up-your-local-environment/) as well as [creating the alexa-app](https://www.bignerdranch.com/blog/developing-alexa-skills-locally-with-nodejs-implementing-an-intent-with-alexa-app-and-alexa-app-server/), from Big Nerd Ranch's official Alexa tutorials. But, your app as this stage will work as a stand-alone app. If you click 'Show' you'll see the contents of `examples/public_html/index.html`. And if you add /airportinfo to the URL, you'll see the Alexa simulator. Try it out by selecting 'IntentRequest' from the Type drop-down, 'airportinfo' from Intent, and enter 'ATL' for the AIRPORTCODE. After clicking 'Send Request' you should see the response beneath it, giving you info about Hartsfield-Jackson Atlanta International airport.
-
-![Screen Shot 2016-08-23 at 21.27.58](https://hyperdev.wpengine.com/wp-content/uploads/2016/08/Screen-Shot-2016-08-23-at-21.27.58-1024x380.png)
-
-That's all fine, but let's get to the fun part - getting Alexa to say it!
+This project uses [alexa-app](https://github.com/matt-kruse/alexa-app), which does the dirty work of interpreting JSON requests from Amazon and building the JSON response. So all the code in this project does is tell Alexa what to say in different scenarios - for example if someone requests weather but doesn't specify a day, we need a different reponse to if they did.
 
 ## Set Up Your Alexa App
 

@@ -1,8 +1,8 @@
-# Alexa Airport Info Skill
+# Alexa Weather Forecast Skill
 
-This project demonstrates how to build an Alexa skill - no Amazon Echo required! It's a useful project to learn the basics of creating Alexa Skills.
+This project demonstrates a full, working Alexa skill so that you can understand how to build your own - no Amazon Echo required!
 
-It implements Big Nerd Ranch's [Airport Info app](https://github.com/bignerdranch/alexa-airportinfo), which tells you details about delays and weather conditions at a particular airport in response to an airport code.
+This example Alexa Skill gets weather forecast info from forecast.io.
 
 -----
 
