@@ -27,10 +27,10 @@ alexaApp.launch(function(request, response) {
 alexaApp.intent("Weather", {
     "slots": { "WHEN": "AMAZON.DATE" },
     "utterances": [
-      "what's the weather for {WHEN}",
-      "what I should expect on {WHEN}",
+      "what's the weather for {-|WHEN}",
+      "what I should expect on {-|WHEN}",
       "tell me the weather",
-      "{WHEN}"
+      "{-|WHEN}"
     ]
   },
   function(request, response) {
