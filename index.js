@@ -20,7 +20,7 @@ app.set("view engine", "ejs");
 
 alexaApp.launch(function(request, response) {
   console.log("App launched");
-  response.say('I can tell you the weather<break time="1s"/> but you must give me a day!');
+  response.say('Hey ,there ,I am weather bot,I can tell you the weather<break time="1s"/> but you must give me a day!');
 });
 
 // The main Weather intent - checks if a day/date was supplied or not and sends the appropriate response
